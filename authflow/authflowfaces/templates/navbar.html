@@ -1,0 +1,41 @@
+{% load static %} 
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> {% block title %}{% endblock title %} </title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="{% static 'signup.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Tech Exam</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" 
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class='nav-link {% if request.resolver_match.url_name == "sign_up" %}active{% endif %}' aria-current="page" href="/signup">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link {% if request.resolver_match.url_name == "sign_in" %}active{% endif %}' href="/login">Log in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link {% if request.resolver_match.url_name == "permission_fetch" %}active{% endif %}' href="/permissions">Permissions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link {% if request.resolver_match.url_name == "role_fetch" %}active{% endif %}' href="/roles">Roles</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock content %}
+        <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>

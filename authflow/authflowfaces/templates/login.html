@@ -1,0 +1,45 @@
+{% extends 'navbar.html' %}
+
+{% block title %} 
+    Log in - TechExam
+{% endblock title %}
+
+{% block content %}
+    {% if form.has_result.initial %}
+        <script>
+            alert("{{ form.action_result.initial }}");
+        </script>
+    {% endif %}
+    <div class="form-signin-wrapper">
+        <main class="form-signin">
+            <form method="post">
+                {% csrf_token %}
+                <h1 class="h1 mb-3 fw-normal"> Login </h1>
+                
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="txt-username" 
+                        name="username" placeholder="Username">
+                    <label for="txt-username" class="sr-only"> Username </label>
+                    <div class="text-errors">
+                        {{ form.errors.username }}
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="txt-password" 
+                        name="password" placeholder="Password">
+                    <label for="txt-password" class="sr-only"> Password </label>
+                    <div class="text-errors">
+                        {{ form.errors.password }}
+                    </div>
+                    <div class="text-errors">
+                        {{ form.errors.response }}
+                    </div>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit"
+                onclick="this.disabled=true,this.form.submit();"">Sign in</button>
+                <p class="mt-5 mb-3 text-muted">&copy; J.E Pedregosa </p>
+            </form>
+        </main>
+    </div>
+{% endblock content %}

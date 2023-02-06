@@ -1,0 +1,51 @@
+{% extends 'navbar.html' %}
+
+{% block title %} 
+    Permissions List - TechExam
+{% endblock title %}
+
+{% block content %}
+    {% if form.has_result.initial %}
+        <script>
+            alert("{{ form.action_result.initial }}");
+        </script>
+    {% endif %}
+    <div class="form-signin-wrapper">
+        <main class="form-signin">
+            <h1 class="h1 mb-3 fw-normal"> Add Permissions </h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for permission in perm_list %}
+                    <tr>
+                        <th scope="row">{{ permission.id }}</th>
+                        <td> {{ permission.name }} </td>
+                    </tr>
+                {% endfor %} 
+                </tbody>
+            </table>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="txt-name" 
+                        name="name" placeholder="Permission Name">
+                    <label for="txt-name" class="sr-only"> Name </label>
+                    <div class="text-errors">
+                        {{ form.errors.name }}
+                    </div>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit"
+                    onclick="this.disabled=true,this.form.submit();""> Add permission </button>
+                <p class="mt-5 mb-3 text-muted">&copy; J.E Pedregosa </p>
+            </form>
+        </main>
+    </div>
+
+{% endblock content %}
